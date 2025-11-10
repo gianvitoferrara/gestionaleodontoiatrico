@@ -1,0 +1,17 @@
+{
+  "name": "gestionale-odontoiatrico",
+  "version": "1.0.0",
+  "description": "Gestionale Odontoiatrico per il mercato italiano",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["odontoiatria", "gestionale", "dentista"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^9.2.2"
+  }
+}

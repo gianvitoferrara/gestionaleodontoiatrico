@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionale Odontoiatrico</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>🦷 Gestionale Odontoiatrico</h1>
+      <nav>
+        <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+        <button class="nav-btn" data-section="pazienti">Pazienti</button>
+        <button class="nav-btn" data-section="agenda">Agenda</button>
+        <button class="nav-btn" data-section="magazzino">Magazzino</button>
+        <button class="nav-btn" data-section="fatture">Fatture</button>
+        <button class="nav-btn" data-section="compensi">Compensi</button>
+        <button class="nav-btn" data-section="listino">Listino Prezzi</button>
+        <button class="nav-btn" data-section="dentisti">Dentisti</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Dashboard -->
+      <section id="dashboard" class="content-section active">
+        <h2>Dashboard</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Appuntamenti Oggi</h3>
+            <p class="stat-number" id="stat-appuntamenti">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Pazienti Totali</h3>
+            <p class="stat-number" id="stat-pazienti">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Fatture Mese</h3>
+            <p class="stat-number" id="stat-fatture">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Incasso Mese</h3>
+            <p class="stat-number" id="stat-incasso">€0</p>
+          </div>
+        </div>
+        <div class="dashboard-section">
+          <h3>Appuntamenti di Oggi</h3>
+          <div id="today-appointments"></div>
+        </div>
+      </section>
+
+      <!-- Pazienti -->
+      <section id="pazienti" class="content-section">
+        <div class="section-header">
+          <h2>Pazienti</h2>
+          <button class="btn-primary" onclick="showPazienteForm()">+ Nuovo Paziente</button>
+        </div>
+        <div class="search-bar">
+          <input type="text" id="search-pazienti" placeholder="Cerca paziente...">
+        </div>
+        <div id="pazienti-list" class="data-list"></div>
+      </section>
+
+      <!-- Agenda -->
+      <section id="agenda" class="content-section">
+        <div class="section-header">
+          <h2>Agenda Appuntamenti</h2>
+          <button class="btn-primary" onclick="showAppuntamentoForm()">+ Nuovo Appuntamento</button>
+        </div>
+        <div class="filters">
+          <input type="date" id="filter-data" onchange="loadAppuntamenti()">
+          <select id="filter-dentista" onchange="loadAppuntamenti()">
+            <option value="">Tutti i dentisti</option>
+          </select>
+        </div>
+        <div id="appuntamenti-list" class="calendar-view"></div>
+      </section>
+
+      <!-- Magazzino -->
+      <section id="magazzino" class="content-section">
+        <div class="section-header">
+          <h2>Magazzino</h2>
+          <button class="btn-primary" onclick="showArticoloForm()">+ Nuovo Articolo</button>
+        </div>
+        <div id="magazzino-list" class="data-list"></div>
+      </section>
+
+      <!-- Fatture -->
+      <section id="fatture" class="content-section">
+        <div class="section-header">
+          <h2>Fatture</h2>
+          <button class="btn-primary" onclick="showFatturaForm()">+ Nuova Fattura</button>
+        </div>
+        <div id="fatture-list" class="data-list"></div>
+      </section>
+
+      <!-- Compensi -->
+      <section id="compensi" class="content-section">
+        <div class="section-header">
+          <h2>Compensi Collaboratori</h2>
+        </div>
+        <div class="filters">
+          <select id="compensi-mese">
+            <option value="1">Gennaio</option>
+            <option value="2">Febbraio</option>
+            <option value="3">Marzo</option>
+            <option value="4">Aprile</option>
+            <option value="5">Maggio</option>
+            <option value="6">Giugno</option>
+            <option value="7">Luglio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Settembre</option>
+            <option value="10">Ottobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Dicembre</option>
+          </select>
+          <select id="compensi-anno"></select>
+          <select id="compensi-dentista">
+            <option value="">Tutti i dentisti</option>
+          </select>
+          <button class="btn-secondary" onclick="loadCompensi()">Filtra</button>
+        </div>
+        <div id="compensi-list" class="data-list"></div>
+        <div id="compensi-summary"></div>
+      </section>
+
+      <!-- Listino Prezzi -->
+      <section id="listino" class="content-section">
+        <div class="section-header">
+          <h2>Listino Prezzi Trattamenti</h2>
+          <button class="btn-primary" onclick="showListinoForm()">+ Nuovo Trattamento</button>
+        </div>
+        <div id="listino-list"></div>
+      </section>
+
+      <!-- Dentisti -->
+      <section id="dentisti" class="content-section">
+        <div class="section-header">
+          <h2>Dentisti</h2>
+          <button class="btn-primary" onclick="showDentistaForm()">+ Nuovo Dentista</button>
+        </div>
+        <div id="dentisti-list" class="data-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
