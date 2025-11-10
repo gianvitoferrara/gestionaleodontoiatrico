@@ -67,4 +67,4 @@ Il progetto è stato sviluppato con l'obiettivo di minimizzare le dipendenze est
 
 ## Licenza
 
-ISC
+GNU AFFERO GENERAL PUBLIC LICENSE Version 3
